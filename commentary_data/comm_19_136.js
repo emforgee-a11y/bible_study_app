@@ -1,0 +1,11 @@
+bible_loader.load_commentary(19, 136, {
+  "20": {
+    "Commentary Vol. 154": "Thou leddest thy people like a flock, etc.] Either through the Red sea, according to R. Moses `[char_Moses_Exo_2]` Hacohen, as Aben Ezra observes; (see [v_Isa_63_11] [v_Isa_63_12] [v_Isa_63_13] <236311>Isaiah `[char_Isaiah_Gen_26]` 63:11-13), or rather, as he and Kimchi, through the wilderness, after they were led through the sea; the people of Israel are compared to a flock of sheep; the Lord is represented as the Shepherd of them, who took care of them, protected and preserved them from their enemies: by the hand of Moses `[char_Moses_Exo_2]` and Aaron `[char_Aaron_Exo_6]`; the one was their civil and the other their ecclesiastical governor, and both under the Lord, and instruments of his, in guiding and conducting the people in all things needful for them. The Arabic version adds, \u201cAllelujah\u201d; from all this the psalmist concluded, though it is not mentioned, that as God had delivered his people of old out of their straits and difficulties, so he hoped and believed, that as he could, he would deliver him in his own time and way; and by this means his faith was relieved and strengthened. 875"
+  },
+  "1": {
+    "Commentary Vol. 155": "O give thanks unto the Lord, for he [is] good, etc.] In himself, and to all his creatures; and especially to his chosen people, who therefore should give thanks to him daily in the name of Christ, for all blessings temporal and spiritual, in faith and fervency, and in the sincerity of their souls, with their whole heart; for his mercy [endureth] for ever; it is the same with his love, which is from everlasting to everlasting; and continues notwithstanding the sins of his people, the hidings of his face from them, and his chastisements of them; the covenant which is founded on mercy, and all the blessings of it, which are the sure mercies of David `[char_David_Rut_4]`, last for ever; and hence the vessels of [v_Psa_106_1] mercy shall certainly be saved, and not lost; (see <19A601>"
+  },
+  "4": {
+    "Commentary Vol. 155": "Praise him, ye heaven of heavens, etc.] All the heavens, the airy and starry heavens; and the third heaven, the residence of God, angels and saints: these are made by the Lord, and declare the glory of his power, [v_Psa_19_1] wisdom, and goodness, and show forth his handiwork, (<191901>"
+  }
+});

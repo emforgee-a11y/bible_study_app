@@ -1,0 +1,8 @@
+bible_loader.load_commentary(17, 5, {
+  "2": {
+    "Edgar V. McKnight": "That in those days, when the King Ahasuerus sat on the throne of\nhis kingdom, etc.] Not only was placed upon it, but settled in it; after\nXerxes had subdued Egypt, in the second year of his reign f29, and enjoyed\ngreat peace and tranquillity:\nwhich was in Shushan the palace; that is, the throne of his kingdom was in\nShushan, the royal city of the kings of Persia; of which (See Gill on\n[v_Neh_1_1] \u201c<160101>Nehemiah 1:1\u201d) (See Gill on \u201c<270802>Daniel 8:2\u201d).\nVer."
+  },
+  "3": {
+    "Edgar V. McKnight": "In the third year of his reign he made a feast unto all his princes,\nand his servants, etc.] The nobles and officers in his court; on what\naccount this was cannot be said with certainty, whether the first day of it\nwas his birthday, or the day of his coming to the throne, on which day\nXerxes used to make a feast annually, as Herodotus relates f30:\nthe power of Persia and Media; the mighty men therein, the potentates\nthereof; or the \u201carmy\u201d, the principal officers of it:\nthe nobles and princes of the provinces being with him. The first word\nAben Ezra declares his ignorance of, whether it is Hebrew or Persian;\nJarchi interprets it governors; and the persons intended by both seem to be\nthe deputy governors of the one hundred and twenty seven provinces who\nwere present at this feast. Xerxes, having reduced Egypt, meditated a war\nwith Greece, to which he was pressed by Mardonius, a relation of his; upon\nwhich he summoned the chief men of his kingdom, to have their advice"
+  }
+});

@@ -1,0 +1,17 @@
+bible_loader.load_commentary(31, 49, {
+  "8": {
+    "Psalms": "Ver."
+  },
+  "1": {
+    "Psalms": "Keep not thou silence, O God, etc.] Which he is thought and said to do, when he does not answer the prayers of his people, nor plead their cause, nor rebuke their enemies; when he does not speak a good word to them, or one for them, or one against those that hate and persecute them; hold not thy peace; or \u201cbe not deaf\u201d f1187 to the cries and tears of his people, and to the reproaches, menaces, and blasphemies of wicked men: and be not still, O God; or \u201cquiet\u201d f1188, at rest and ease, inactive and unconcerned, as if he cared not how things went; the reason follows. 954\nVer."
+  },
+  "2": {
+    "Psalms": "For, lo, thine enemies make a tumult, etc.] Or \u201ca noise\u201d f1189: wicked men are commonly noisy, roaring out their blasphemies against God, belching out oaths and curses, and breathing threatenings and slaughter against the saints; especially a numerous army of them, consisting of many people and nations, as this did; who are called the Lord\u2019s \u201cenemies\u201d, being the enemies of his people, and their cause and his are one and the same; and besides, all wicked men are enemies to God, and all that is good, in their minds, and which appears by their actions; yea, they are enmity itself unto him: and they that hate thee have lift up the head; are haughty, proud, and arrogant; speak loftily, and with a stiff neck; set their mouth against heaven, and God in it; and their tongue walks through the earth, and spares none; they exult and rejoice, as sure of victory, before the battle is fought; such then were, and such there are, who are haters of God, hate his being, perfections, purposes, and providences; hate his Son without a cause, and even do despite unto the Spirit of grace; hate the law and its precepts, the Gospel and its doctrines and ordinances, and the ways, worship, and people of God, as appears by what follows.\nVer."
+  },
+  "3": {
+    "Psalms": "They have taken crafty counsel against thy people, etc.] The people of Israel, hereafter named, whom God had chosen and avouched to be his people; these they dealt subtlety with, as the king of Egypt had done with their forefathers; and this, agreeably to their character, being the seed of the old serpent, more subtle than any of the beasts of the field; these devised cunning devices, formed crafty schemes for the destruction of the Lord\u2019s people; but often so it is, that the wise are taken in their own craftiness, and their counsel is carried headlong: and consulted against thy hidden ones; not hidden from the Lord, and unknown unto him, though from their enemies, and unknown by them, and so the object of their hatred and persecution; but hidden by him as his jewels and peculiar treasure, which he takes care of; hidden under the shadow of his wings, in the secret of his presence and tabernacle, as in a pavilion; and therefore it was a daring piece of insolence in their enemies to attack them: so the life of saints is said to be hid with Christ in God, which [v_Col_3_3] denotes both its secrecy and safety; (see <510303>Colossians 3:3), the Targum is, \u201cagainst the things hidden in thy treasures;\u201d meaning the riches of the temple. 955\nVer."
+  },
+  "4": {
+    "Psalms": "They have said, etc.] Secretly in their hearts, or openly to one another, and gave it out in the most public manner, as what they had [v_Psa_74_8] consulted and determined upon; (see <197408>"
+  }
+});

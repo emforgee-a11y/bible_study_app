@@ -1,0 +1,8 @@
+bible_loader.load_commentary(13, 3, {
+  "22": {
+    "Lloyd R. Bailey": "census (3:22) and 23,000 in the second ("
+  },
+  "15": {
+    "Lloyd R. Bailey": "), in contrast to males in the other tribes who were needed for\nmilitary service and thus enumeration of them began only at age\ntwenty (1:3).\n550\n[v_Num_26_1] [v_Num_26_2] [v_Num_26_3] [v_Num_26_4] [v_Num_26_5] [v_Num_26_6] [v_Num_26_7] [v_Num_26_8] [v_Num_26_9] [v_Num_26_10] [v_Num_26_11] [v_Num_26_12] [v_Num_26_13] [v_Num_26_14] [v_Num_26_15] [v_Num_26_16] [v_Num_26_17] [v_Num_26_18] [v_Num_26_19] [v_Num_26_20] [v_Num_26_21] [v_Num_26_22] [v_Num_26_23] [v_Num_26_24] [v_Num_26_25] [v_Num_26_26] [v_Num_26_27] [v_Num_26_28] [v_Num_26_29] [v_Num_26_30] [v_Num_26_31] [v_Num_26_32] [v_Num_26_33] [v_Num_26_34] [v_Num_26_35] [v_Num_26_36] [v_Num_26_37] [v_Num_26_38] [v_Num_26_39] [v_Num_26_40] [v_Num_26_41] [v_Num_26_42] [v_Num_26_43] [v_Num_26_44] [v_Num_26_45] [v_Num_26_46] [v_Num_26_47] [v_Num_26_48] [v_Num_26_49] [v_Num_26_50] [v_Num_26_51] [v_Num_26_52] [v_Num_26_53] [v_Num_26_54] [v_Num_26_55] [v_Num_26_56] [v_Num_26_57] [v_Num_26_58] [v_Num_26_59] [v_Num_26_60] [v_Num_26_61] [v_Num_26_62] [v_Num_26_63] [v_Num_26_64] [v_Num_26_65] Numbers 26:1-65\nComment on Details of Numbers 26\nVv. 5-51: The meaning of the individual names and their occurrence elsewhere in\n[v_Gen_46_8] [v_Gen_46_9] [v_Gen_46_10] [v_Gen_46_11] [v_Gen_46_12] [v_Gen_46_13] [v_Gen_46_14] [v_Gen_46_15] [v_Gen_46_16] [v_Gen_46_17] [v_Gen_46_18] [v_Gen_46_19] [v_Gen_46_20] [v_Gen_46_21] [v_Gen_46_22] [v_Gen_46_23] [v_Gen_46_24] [v_Gen_46_25] [v_Gen_46_26] [v_Gen_46_27] genealogies (e.g., Gen 46:8-27; Exod 6:14-25; 1 Chr 2\u20138) is discussed by B. A. Levine,"
+  }
+});

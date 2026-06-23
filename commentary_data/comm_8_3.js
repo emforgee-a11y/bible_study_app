@@ -1,0 +1,5 @@
+bible_loader.load_commentary(8, 3, {
+  "5": {
+    "Robert Hawker": "And it becomes a loud admonition to our British Ephesus `[place_Ephesus_Act_18]`, in the present awful hour! If God spared not a city so once blessed, take heed lest he spare not thee! The Church of God must stand, and will stand, till time shall be no more. But the Candlestick is a moveable part of the furniture in the house. The LORD may remove this to other nations, as he did by Ephesus `[place_Ephesus_Act_18]`, while his Church is the same upon earth, till time shall be no more. Reader! pause at the threshold of this most blessed scripture, and let us both beg the Almighty Giver of it, to unfold to our spiritual apprehension, the gracious contents of it; that CHRIST, who is the great object of all contained in it, and the subject of all treated of in it, may appear to us in all his, fullness, suitableness, and all- sufficiency; that in him, and of him, and through him, we may find cause continually, through every part of it, to bless JEHOVAH in his threefold character of Person, for all our blessings in Jesus `[char_Jesus_Ref]` Christ. Amen!"
+  }
+});

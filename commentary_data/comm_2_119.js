@@ -1,0 +1,5 @@
+bible_loader.load_commentary(2, 119, {
+  "6": {
+    "James W. Knox": "Let that day be darkness; let not God regard it from above, neither let the light shine upon it. Let darkness and the shadow of death stain it; let a cloud dwell upon it; let the blackness of the day terrify it. As for that night, let darkness seize upon it; let it not be joined unto the days of the year, let it not come into the number of the months. In another time of despair, a desperate man cried out, Thou hast laid me in the lowest pit, in darkness, in the deeps (\n6. Let that day be darkness; let not God regard it from above, neither let the light shine upon it. Let darkness and the shadow of death stain it; let a cloud dwell upon it; let the blackness of the day terrify it. As for that night, let darkness seize upon it; let it not be joined unto the days of the year, let it not come into the number of the months. In another time of despair, a desperate man cried out, Thou hast laid me in the lowest pit, in darkness, in the deeps [v_Psa_88_6] ("
+  }
+});

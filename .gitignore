@@ -1,0 +1,13 @@
+# Private API keys
+gemini_api_key.txt
+
+# Local debug and scratch files
+js_init_debug.txt
+onload_block.txt
+quiz_dropdown_debug.txt
+quiz_populate_code.txt
+compile_commentaries_v3.py
+
+# OS generated files
+.DS_Store
+Thumbs.db

@@ -1,0 +1,8 @@
+bible_loader.load_commentary(66, 33, {
+  "15": {
+    "Psalms": "Ver."
+  },
+  "16": {
+    "Psalms": "He giveth snow like wool, etc.] For colour as white as wool; so the Targum and Kimchi: and for the manner of its falling, lightly and gently as a lock of wool; which for its thinness and fineness it also resembles. Hence the ancients used to call snow eriwdev udwr, \u201cwoolly water\u201df1958; and Martialf1959 gives it the name of \u201cdensum veilus aquarum\u201d, \u201ca thick fleece of waters\u201d: so another poetf1960 calls clouds flying fleeces of wool, to which they sometimes seem like; Plinyf1961 calls it the from of the celestial waters. And it is like wool for its usefulness to the earth; for as wool covers the sheep, and clothes made of it cover men, and keep them warm; so snow filling upon the earth covers it and keeps it warm, and secures the wheat and other fruits of the earth from the injuries of the cold: and this lies among the treasures of the Lord, and he brings it out from thence, and commands it to be on the earth; and it is an useful gift of his providence, 1659 [v_Job_37_6] for which his name is to be praised; (see <183706>Job 37:6 38:22). The Jews have a saying, as Arama observes, that one day of snow is better than five of rain. In the third year of Valens and Valentinianus, with the Atrebates (a people in the Netherlands), real wool fell from the clouds, mixed with rainf1962. Several blessings of grace are signified by this figure; as pardon of sin, the justifying righteousness of Christ, and the efficacy of the word of [v_Psa_51_7] God, (<195107>"
+  }
+});

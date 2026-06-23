@@ -1,0 +1,16 @@
+bible_loader.load_commentary(19, 109, {
+  "9": {
+    "Commentary Vol. 154": "Therefore my heart is glad, etc.] Because he had the Lord always in view; he was at his right hand, for his support and assistance, as well as because of what is expressed in the next verses: this is the same with [v_Luk_10_21] rejoicing in spirit, (<421021>Luke 10:21); it denotes an inward joy, and fulness of [v_Act_2_28] it, because of the Lord\u2019s presence with him; (see <440228>Acts 2:28); and my glory rejoiceth; meaning either his soul, which is the most glorious and noble part of man, as Aben Ezra, Kimchi, and Ben Melech interpret it; [v_Act_2_26] or rather his tongue, as in (<440226>Acts 2:26); the faculty of speaking in man being what gives him a superior glory and excellency to other creatures, and is that whereby he glorifies God; and so the word is often used in this [v_Psa_30_12] book; (see <193012>",
+    "Terence E. Fretheim, Thomas B. Slater": "11\n276\n109:9-10"
+  },
+  "12": {
+    "Commentary Vol. 154": "And as for me, thou upholdest me in mine integrity, etc.] In the innocence of his nature, being free from sin, original and actual; in the uprightness of his life and conversation before God and men; and in the 468 perfection of his obedience and sacrifice, whereby he brought in a perfect righteousness, made complete atonement, and obtained full salvation and redemption for his people; and, because of all this, Jehovah the Father upheld him in his sufferings, as man and Mediator, that he failed not, and was not discouraged: or rather the sense is, that by several things which turned up in Providence, as the disagreement of the witnesses, declaration of his judge, and the confession of Judas his betrayer, he was cleared of the charges brought against him, and his innocence was maintained, and he upheld in it; but especially this was done by raising him from the dead, when he was openly acquitted, discharged, and justified, and declared to be [v_1Ti_3_16] the Holy One of God, (<540316>1 Timothy 3:16 <191610>"
+  },
+  "1": {
+    "Commentary Vol. 155": "Hold not thy peace, etc.] Or be not as a deaf or dumb man, or like one that turns a deaf ear and will give no answer; so the Lord seems to his people when he does not give an immediate answer to their prayers, and does not arise to help them; he seems to have forsaken them, and to stand at a distance from them; nor does he avenge them of their enemies; it is the Messiah, as man, that puts up this petition, and it agrees with (<192202>",
+    "Terence E. Fretheim, Thomas B. Slater": "261"
+  },
+  "27": {
+    "Commentary Vol. 155": "That they may know that this is thy hand, etc.] Which inflicted vengeance, and executed judgments on Judas and the Jews, as before imprecated: so the Targum, \u201cthat they may know that this is thy stroke;\u201d 1290 or which was concerned in all the sorrows and sufferings of the Messiah, which could never have come upon him had it not been the will of God; it was his hand and council that determined it, or men could never have [v_Act_4_28] effected it; (see <440428>Acts 4:28 <431911>John `[char_John_Ref]` 19:11), or which wrought [v_Psa_118_21] [v_Psa_118_22] [v_Psa_118_23] deliverance and salvation as before prayed for; (see <19B821>"
+  }
+});

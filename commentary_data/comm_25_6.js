@@ -1,0 +1,14 @@
+bible_loader.load_commentary(25, 6, {
+  "19": {
+    "Dr. Peter S. Ruckman": "Job 30:30 describes the condition exactly; also the last four verses in Ezekiel\n19. David `[char_David_Rut_4]` was no more speaking for himself in these passages than he was in"
+  },
+  "20": {
+    "Dr. Peter S. Ruckman": "Paul `[char_Paul_Act_13]` tells the New Testament Christian \u201cunder the covenant of grace\u201d etc., to take a Christian and \u201cdeliver such an one unto Satan for the destruction of the flesh\u201d (1 Cor. 5:5). What does this mean? Just kick him out of the church? Is that all it means? \u201cTherefore put away from among yourselves that wicked person\u201d (1 Cor. 5:13). It is true that the man thus treated is later restored (2 Cor. 2:6\u20137), but he is restored after being \u201cswallowed up with overmuch sorrow.\u201d This is not the case here (Ps. 109) at all. Judas\u2019 sorrow was \u201cthe sorrow of the world\u201d (2 Cor. 7:10) which \u201cworketh death.\u201d He does not go to Calvary to confess or to get forgiveness, nor does he plead to God for mercy. He confesses as Pharaoh confessed (cf. Exod. 9:27; Matt. 27:4) and as Balaam confessed (Num. 22:34). These men are connected with Satan (Ezek. 29:3; Jude 11; John `[char_John_Ref]` 17:12). Christ couldn\u2019t have prayed the prayer, did they say? They covered up for the Devil AGAIN. It is absolutely habitual. It is an \u201chistoric position.\u201d Have any of you asked God to bless Adolph Hitler\u2019s relatives? He had some living as late as"
+  },
+  "1970": {
+    "Dr. Peter S. Ruckman": "Did any of you pray for Josef Goebbels\u2019 children? He killed all of them. Any loss to you? Would you really want Rock Hudson\u2019s estate to \u201cprosper\u201d after his decease, so some more perverts could spread AIDS? If a man loves to steal money, persecute poor people, kill people who don\u2019t worship him, and would sell Jesus `[char_Jesus_Ref]` Christ out for $47 in American money (1970), would you want God to answer his prayers (vs. 7)? If the universal law of God and nature decrees that a man reaps what he sows, what is wrong with"
+  },
+  "17": {
+    "Dr. Peter S. Ruckman": "in either Testament? If he was in jail for murder (like Charles Manson) and praying to escape from the \u201cslammer,\u201d would you pray with him? What is wrong with an extortioner taking all that a man has if that man is a THIEF (look at John `[char_John_Ref]` 12:6)? What makes you think the children of such a man would be unlike him? Joseph `[char_Joseph_Ref]` was afraid to go back into Judea because Herod\u2019s son was on the throne (Matt. 2:22). Was this \u201cprejudice\u201d or rather precaution? The reward of the Lord\u2019s adversaries\u2014not David `[char_David_Rut_4]`\u2019s (vs. 20)\u2014is to be\nverses 6\u2013"
+  }
+});

@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallel Bible Study & Comparison App</title>
+    
+    <!-- SEO and Meta Tags -->
+    <meta name="description" content="Parallel Bible Study app comparing KJV in English with 6 Spanish Bible versions in a responsive, customizable interlinear layout.">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- MQTT client library for multiplayer Kahoot-style quiz -->
+    <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+    
+    <!-- CSS Design System -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="view-books">
+
+    <!-- Left Settings Drawer/Sidebar -->
+    <aside class="sidebar" id="sidebar" onclick="event.stopPropagation()">
+        <div class="sidebar-header">
+            <h1 data-translate="sidebar_title">Bible Study Options</h1>
+        </div>
+        <div class="sidebar-content">
+            
+            <!-- Language Selection (Mobile only) -->
+            <div class="sidebar-section mobile-only-lang" style="display: none; border-bottom: 1px solid var(--border-color); padding-bottom: 1.25rem; margin-bottom: 1.25rem;">
+                <h2 data-translate="language_selector_title">Language / Idioma</h2>
+                <div class="mode-selector">
+                    <button id="sidebar-lang-btn-en" class="mode-btn" onclick="setLanguage('en')">English</button>
+                    <button id="sidebar-lang-btn-es" class="mode-btn" onclick="setLanguage('es')">Español</button>
+                </div>
+            </div>
+            
+            <!-- Reading Mode Selector -->
+            <div class="sidebar-section">
+                <h2 data-translate="reading_mode">Reading Mode</h2>
+                <div class="mode-selector">
+                    <button id="btn-mode-parallel" class="mode-btn active" onclick="changeReadingMode('parallel')" data-translate="parallel">Parallel</button>
+                    <button id="btn-mode-single" class="mode-btn" onclick="changeReadingMode('single')" data-translate="single_focus">Single Focus</button>
+                </div>
+            </div>
+
+            <!-- Comparative Mode Checkboxes & Color Pickers -->
+            <div id="parallel-controls" class="sidebar-section">
+                <h2 data-translate="translation_filters">Translation Filters</h2>
+                
+                <!-- Dynamic Translation List Container -->
+                <div id="translation-list-container"></div>
+
+                <div class="control-grid">
+                    <button class="btn" onclick="setAllFilters(true)" data-translate="show_all">Show All</button>
+                    <button class="btn" onclick="setAllFilters(false)" data-translate="hide_all">Hide All</button>
+                </div>
+            </div>
+
+            <!-- Single Focus Mode Selector, Color Pickers & Layout Controls -->
+            <div id="single-controls" class="sidebar-section" style="display: none;">
+                <h2 data-translate="select_focus">Select Focus Version</h2>
+                <select id="single-version-select" class="btn" onchange="setSingleVersion(this.value)" style="margin-bottom: 1.5rem;">
+                    <option value="KJV">KJV - King James Version</option>
+                    <option value="VP">VP - Reina Valera 1602 Purificada</option>
+                    <option value="VG">VG - Reina Valera Gomez</option>
+                    <option value="09">09 - Reina Valera 1909</option>
+                    <option value="60">60 - Reina Valera 1960</option>
+                    <option value="65">65 - Reina Valera 1865</option>
+                    <option value="BO">BO - Spanish Biblia del Oso 1569</option>
+                </select>
+
+                <!-- Color picker for focused version -->
+                <div class="version-toggle-card" style="cursor: default; margin-bottom: 1.5rem;" onclick="event.stopPropagation()">
+                    <div class="version-info">
+                        <input type="color" id="single-color-picker" class="version-color-picker" onchange="changeVersionColor(singleFocusVersion, this.value)">
+                        <div>
+                            <div class="version-label" data-translate="text_color">Text Color</div>
+                            <div class="version-desc" data-translate="customize_color">Customize reading color</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 data-translate="layout_style">Layout Style</h2>
+                <div class="mode-selector" style="margin-bottom: 1.5rem;">
+                    <button id="btn-layout-verse" class="mode-btn active" onclick="changeLayoutMode('verse')" data-translate="verse_list">Verse List</button>
+                    <button id="btn-layout-para" class="mode-btn" onclick="changeLayoutMode('paragraphs')" data-translate="paragraphs">Paragraphs</button>
+                </div>
+
+                <!-- Text to Speech Controls -->
+                <h2 data-translate="tts_controls">Text to Speech</h2>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Play/Pause/Stop Row -->
+                    <div style="display: flex; gap: 0.5rem; width: 100%;">
+                        <button id="tts-play-btn" class="btn btn-primary" style="flex: 1; display: flex; align-items: center; justify-content: center; gap: 0.4rem;" onclick="toggleTTS()"><span id="tts-play-icon">▶</span> <span id="tts-play-text" data-translate="tts_read">Read</span></button>
+                        <button id="tts-stop-btn" class="btn" style="display: flex; align-items: center; justify-content: center; padding: 0.6rem;" onclick="stopTTS()" disabled>⏹</button>
+                    </div>
+                    
+                    <!-- Voice Select -->
+                    <div>
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);" data-translate="tts_voice">Voice</span>
+                        <select id="tts-voice-select" class="btn" onchange="handleVoiceChange(this.value)" style="font-size: 0.8rem; padding: 0.4rem 2rem 0.4rem 0.8rem; margin-top: 0.25rem; width: 100%; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;"></select>
+                    </div>
+                    
+                    <!-- Speed Select slider -->
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.75rem; color: var(--text-secondary);" data-translate="tts_speed">Speed</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem; width: 70%;">
+                            <input type="range" id="tts-rate-range" min="0.5" max="2.0" step="0.1" value="1.0" onchange="updateTTSRate(this.value)" style="flex-grow: 1; accent-color: var(--color-accent); height: 4px;">
+                            <span id="tts-rate-label" style="font-size: 0.75rem; font-weight: bold; width: 30px; text-align: right;">1.0x</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Size Adjustment -->
+            <div class="sidebar-section">
+                <h2 data-translate="text_size">Text Size</h2>
+                <div class="font-adjuster">
+                    <button class="btn-circle" onclick="changeFontSize(-0.1)">A-</button>
+                    <span id="font-size-label" style="font-weight: 600;">100%</span>
+                    <button class="btn-circle" onclick="changeFontSize(0.1)">A+</button>
+                </div>
+            </div>
+
+            <!-- Custom Theme Colors Section -->
+            <div class="sidebar-section">
+                <h2 data-translate="theme_colors">Custom Theme Colors</h2>
+                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);" data-translate="bg">Background</span>
+                        <input type="color" id="theme-color-bg" class="version-color-picker" onchange="changeAppThemeColor('bg', this.value)">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);" data-translate="surface">Surface Cards</span>
+                        <input type="color" id="theme-color-surface" class="version-color-picker" onchange="changeAppThemeColor('surface', this.value)">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);" data-translate="main_text">Main Text</span>
+                        <input type="color" id="theme-color-text" class="version-color-picker" onchange="changeAppThemeColor('text', this.value)">
+                    </div>
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-size: 0.85rem; color: var(--text-secondary);" data-translate="app_accent">App Accent (Buttons/Headers)</span>
+                        <input type="color" id="theme-color-accent" class="version-color-picker" onchange="changeAppThemeColor('accent', this.value)">
+                    </div>
+                    <button class="btn" style="padding: 0.4rem; font-size: 0.8rem; width: 100%; margin-top: 0.25rem;" onclick="resetAppThemeColors()" data-translate="reset_theme">Reset Theme Colors</button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Reader Panel -->
+    <main class="main-panel">
+        
+        <!-- Header Navigation Bar -->
+        <header class="header-nav">
+            <div class="nav-breadcrumbs" id="breadcrumbs">
+                <span class="active-book" onclick="showView('books')" data-translate="bible_index">Bible Index</span>
+            </div>
+            
+            <!-- Global Reference Search Bar -->
+            <div class="header-search-container">
+                <input type="text" id="global-search-input" placeholder="Search verse (e.g. Rom 1:16)..." onkeydown="if(event.key === 'Enter') handleSearch()">
+                <button onclick="handleSearch()" title="Search Reference">🔍</button>
+            </div>
+            <div class="header-actions">
+                <!-- Language Selector Toggle Group -->
+                <div class="lang-selector-group" style="display: flex; background-color: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 2px; align-items: center; gap: 2px; height: 38px;">
+                    <button type="button" id="lang-btn-en" class="mode-btn" onclick="setLanguage('en')" style="padding: 0 0.75rem; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; border: none; background: none; color: var(--text-secondary); height: 100%; transition: all 0.2s ease;">English</button>
+                    <button type="button" id="lang-btn-es" class="mode-btn" onclick="setLanguage('es')" style="padding: 0 0.75rem; font-size: 0.8rem; font-weight: 600; border-radius: 6px; cursor: pointer; border: none; background: none; color: var(--text-secondary); height: 100%; transition: all 0.2s ease;">Español</button>
+                </div>
+                <button class="theme-btn" id="timeline-toggle-btn" onclick="toggleTimelineView()" title="Chronology Timeline" style="display: flex; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.8rem; font-weight: bold; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 38px; white-space: nowrap; width: auto;">
+                    <span>🗓</span><span data-translate="timeline_btn">Timeline</span>
+                </button>
+                <button class="theme-btn" id="quiz-toggle-btn" onclick="openQuizModal()" title="Quiz Game" style="display: flex; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.8rem; font-weight: bold; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 38px; white-space: nowrap; width: auto;">
+                    <span>🎮</span><span data-translate="quiz_btn">Quiz</span>
+                </button>
+                <button class="theme-btn" id="random-verse-btn" onclick="openRandomVerseModal()" title="Random Verse Game" style="display: flex; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.8rem; font-weight: bold; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 38px; white-space: nowrap; width: auto;">
+                    <span>🎲</span><span data-translate="random_verse_btn">Random</span>
+                </button>
+                <button class="theme-btn" id="help-toggle-btn" onclick="openHelpModal()" title="Help" style="display: flex; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.8rem; font-weight: bold; border-radius: 8px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 38px; white-space: nowrap; width: auto;">
+                    <span>❓</span><span data-translate="help_btn">Help</span>
+                </button>
+                <button class="theme-btn" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Theme (Light/Dark/Dim)" style="height: 38px; width: 38px; display: flex; align-items: center; justify-content: center; padding: 0;">🌓</button>
+                <button class="btn" id="header-back-btn" onclick="goBackView()" style="display: none;">Back</button>
+                <button class="menu-toggle-btn" id="menu-toggle-btn" onclick="toggleSidebar(event)">☰</button>
+            </div>
+        </header>
+
+        <!-- Main Display Container -->
+        <div class="toc-container" id="display-pane">
+            <!-- Dynamically populated Books, Chapters or Verse Cards -->
+        </div>
+
+
+    <!-- Backdrop Overlay for Study Panel -->
+    <div class="study-overlay" id="study-overlay" onclick="closeStudyPanel()"></div>
+
+    <!-- Right Side Study Drawer / Panel -->
+    <div class="study-panel" id="study-panel">
+        <div class="study-header">
+            <h2 id="study-verse-title">Genesis 1:1</h2>
+            <div style="display: flex; gap: 0.75rem; align-items: center;">
+                <button class="study-maximize-btn" onclick="toggleMaximizeStudyPanel()" style="background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 1.1rem; padding: 4px; display: flex; align-items: center; justify-content: center;" title="Maximize / Restore">⛶</button>
+                <button class="study-close-btn" onclick="closeStudyPanel()">✕</button>
+            </div>
+        </div>
+        
+        <!-- Tab Selectors -->
+        <div class="study-tabs">
+            <button id="tab-btn-commentary" class="study-tab-btn active" onclick="switchStudyTab('commentary')" data-translate="tab_commentary">Commentary</button>
+            <button id="tab-btn-chat" class="study-tab-btn" onclick="switchStudyTab('chat')" data-translate="tab_chat">AI Study Agent</button>
+        </div>
+        
+        <!-- Tab Content: Commentaries -->
+        <div id="study-tab-commentary-content" class="study-tab-content active">
+            <div id="commentaries-list-container">
+                <!-- Dynamically populated commentator accordions -->
+            </div>
+        </div>
+        
+        <!-- Tab Content: AI Study Chat -->
+        <div id="study-tab-chat-content" class="study-tab-content">
+            <!-- Gemini Settings / Key Input -->
+            <div class="chat-key-section" id="chat-key-section">
+                <p class="chat-info-text" data-translate="chat_info">Configure your Google Gemini API key to ask questions about this verse and commentaries.</p>
+                <div class="key-input-container">
+                    <input type="password" id="gemini-api-key" placeholder="Enter Gemini API Key...">
+                    <button class="btn btn-primary" onclick="saveGeminiKey()" data-translate="save_key">Save Key</button>
+                </div>
+                <p class="chat-help-link"><a href="https://aistudio.google.com/app/apikey" target="_blank" data-translate="chat_help">Get a free API key here ↗</a></p>
+            </div>
+            
+            <!-- Chat Pane -->
+            <div class="chat-pane" id="chat-pane" style="display: none;">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="chat-msg system">
+                        <div class="msg-content" data-translate="chat_welcome">Hello! Ask me anything about the active verse or its commentaries. I've automatically loaded their text as context.</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-area" style="display: flex; gap: 0.5rem; align-items: center;">
+                    <textarea id="chat-input" placeholder="Ask a question about this verse..." onkeydown="if(event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendChatMessage(); }" style="flex-grow: 1;"></textarea>
+                    <button id="chat-mic-btn" type="button" class="btn" style="padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; width: 40px; height: 40px; border: 1px solid var(--border-color); background: var(--bg-surface); cursor: pointer; font-size: 1.2rem; flex-shrink: 0;" onclick="toggleChatMic()" title="Talk via Microphone">🎤</button>
+                    <button class="btn-send" onclick="sendChatMessage()" title="Send Question" style="flex-shrink: 0;">➔</button>
+                </div>
+                
+                <div class="chat-footer-actions" style="margin-top: 0.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600;" data-translate="live_voice">Live Voice Chat</span>
+                        <label class="switch" style="transform: scale(0.85); transform-origin: left center;">
+                            <input type="checkbox" id="live-voice-toggle" onchange="toggleLiveVoice(this.checked)">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button class="btn-text-only" onclick="clearChat()" data-translate="clear_chat">Clear Chat</button>
+                        <button class="btn-text-only" onclick="showKeySection()" data-translate="change_key">Change API Key</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Floating Quick Navigation Actions -->
+        <div class="floating-actions" id="floating-actions" style="display: none;">
+            <button class="btn-floating" onclick="openAIChatbot()" title="Open AI Study Chat">💬</button>
+            <button class="btn-floating" onclick="scrollToTop()" title="Scroll to Top">↑</button>
+            <button class="btn-floating" onclick="showView('chapters')" title="Go to Chapter Selection">⚏</button>
+            <button class="btn-floating" onclick="showView('books')" title="Go to Book Selection">📖</button>
+        </div>
+    
+    <!-- Fullscreen Chronology Timeline View -->
+    <div id="timeline-view" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 200; background: var(--bg-base); flex-direction: column;">
+        <!-- Timeline Header -->
+        <header>
+            <div class="header-title-container">
+                <h1 id="timeline-title-text" style="font-family: var(--font-display); font-size:1.3rem;">Chronology Timeline</h1>
+                <p id="timeline-subtitle-text" style="font-size:0.65rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px;">Ussher's Annals of the World</p>
+            </div>
+            
+            <div class="search-nav-container">
+                <div class="search-wrapper">
+                    <span class="search-icon" style="position:absolute; left:12px; top:8px; font-size:0.85rem; color:var(--text-muted);">🔍</span>
+                    <input type="text" id="timeline-search-bar" class="search-input" style="padding-left:2.3rem;" placeholder="Search names (e.g. Moses)..." oninput="handleTimelineSearchInput()" onkeydown="handleTimelineSearchKeydown(event)">
+                    <button id="timeline-clear-search-btn" class="clear-btn" style="position:absolute; right:12px; top:8px; border:none; background:none; color:var(--text-muted); cursor:pointer; font-size:0.85rem;" onclick="clearTimelineSearch()">✕</button>
+                    <div id="timeline-autocomplete-list" class="autocomplete-list"></div>
+                </div>
+            </div>
+            
+            <div class="header-controls" style="display: flex; align-items: center; gap: 0.75rem;">
+                <button type="button" id="timeline-sidebar-toggle-btn" class="theme-btn" onclick="toggleTimelineSidebar()" style="display: none; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.75rem; font-weight: bold; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 36px; white-space: nowrap; width: auto;">
+                    <span>📋</span> <span id="timeline-sidebar-toggle-text">Info & Filters</span>
+                </button>
+                <button type="button" id="timeline-compare-mode-btn" class="theme-btn" onclick="toggleTimelineCompareMode()" style="display: flex; align-items: center; gap: 6px; padding: 0 0.8rem; font-size: 0.75rem; font-weight: bold; border-radius: 6px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03); color: var(--text-secondary); cursor: pointer; height: 36px; white-space: nowrap; width: auto;" title="Click to toggle comparison mode requirements">
+                    <span id="compare-mode-icon">⌨️</span> <span id="compare-mode-text">Ctrl to Compare</span>
+                </button>
+                <div style="display: flex; background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); border-radius: 8px; padding: 2px; align-items: center; gap: 2px; height: 36px;">
+                    <button type="button" id="timeline-lang-en" class="mode-btn" onclick="setTimelineLanguage('en')" style="padding: 0 0.6rem; font-size: 0.75rem; font-weight: 600; border-radius: 6px; cursor: pointer; border: none; background: none; color: var(--text-secondary); height: 100%;">EN</button>
+                    <button type="button" id="timeline-lang-es" class="mode-btn" onclick="setTimelineLanguage('es')" style="padding: 0 0.6rem; font-size: 0.75rem; font-weight: 600; border-radius: 6px; cursor: pointer; border: none; background: none; color: var(--text-secondary); height: 100%;">ES</button>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="toggleTimelineView()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: bold; border-radius: 6px; background: var(--color-accent); color: var(--bg-base); border: none; cursor: pointer;">Close ✕</button>
+            </div>
+        </header>
+        
+        <!-- Timeline SVG Canvas Section -->
+        <div id="global-timeline-section" class="global-timeline-section" style="position: relative; height: 380px; overflow-x: auto; overflow-y: hidden; border-bottom: 1px solid var(--border-color); flex-shrink: 0; background: #070b13;">
+            <div id="timeline-canvas" class="timeline-canvas" style="position: relative; height: 100%; min-width: 12000px;">
+                <!-- Axis Line -->
+                <div id="timeline-axis-line" style="position: absolute; top: 180px; left: 0; right: 0; height: 2px; background: var(--color-accent); z-index: 5;"></div>
+                
+                <!-- Gap Highlight Bar -->
+                <div id="timeline-highlight-bar" style="position: absolute; top: 177px; height: 8px; background: #10b981; display: none; z-index: 4; border-radius: 4px;"></div>
+                <div id="timeline-highlight-label" style="position: absolute; top: 155px; transform: translateX(-50%); font-size: 0.7rem; font-weight: bold; color: #10b981; background: var(--bg-surface); padding: 2px 6px; border-radius: 4px; border: 1px solid #10b981; display: none; z-index: 6; white-space: nowrap;"></div>
+                
+                <!-- SVG Connector Lines Container -->
+                <svg id="timeline-svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 3;"></svg>
+                
+                <!-- Grid ticks and cards will be dynamically rendered here -->
+                <div id="timeline-cards" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;"></div>
+            </div>
+        </div>
+        
+        <!-- Split App Body -->
+        <div class="timeline-body" style="display: flex; flex-grow: 1; min-height: 0; overflow: hidden;">
+            <!-- Sidebar -->
+            <div class="timeline-sidebar" style="width: 320px; background: var(--bg-surface); border-right: 1px solid var(--border-color); display: flex; flex-direction: column; overflow-y: auto; padding: 1.5rem; flex-shrink: 0;">
+                <!-- Mobile Only Header -->
+                <div class="timeline-sidebar-mobile-header" style="display: none; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 1rem;">
+                    <span style="font-weight: bold; color: var(--color-accent); font-size: 0.9rem;">Filtros & Menciones</span>
+                    <button onclick="toggleTimelineSidebar()" style="background: none; border: none; color: var(--text-primary); cursor: pointer; font-size: 1.25rem; font-weight: bold; padding: 4px;">✕</button>
+                </div>
+                
+                <!-- Search Filters (AmToBcad Jump) -->
+                <div style="margin-bottom: 1.5rem; display: flex; gap: 0.5rem; flex-direction: column;">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase;" id="timeline-jump-title">Jump to Year</span>
+                    <div style="display: flex; gap: 0.4rem;">
+                        <input type="text" id="timeline-jump-year-input" style="flex-grow: 1; padding: 0.4rem; background: var(--bg-base); border: 1px solid var(--border-color); border-radius: 4px; color: var(--text-primary); font-size: 0.8rem;" placeholder="e.g. 1000 AM or 4004 BC">
+                        <button class="btn btn-primary" onclick="handleTimelineJumpYear()" style="padding: 0.4rem 0.8rem; font-size: 0.8rem; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; border-radius: 4px; cursor: pointer;">Go</button>
+                    </div>
+                </div>
+                
+                <!-- Selected Figure Details Card -->
+                <div id="timeline-selected-person-card" class="person-card" style="display: none; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 1.5rem; max-height: 300px; overflow-y: auto; overflow-x: hidden;">
+                    <!-- Dynamically filled -->
+                </div>
+                
+                <!-- Bible Mentions List Tab -->
+                <div id="timeline-bible-mentions-section" style="display: none; flex-grow: 1; display: flex; flex-direction: column; min-height: 0;">
+                    <span style="font-size: 0.75rem; color: var(--text-secondary); font-weight: 600; text-transform: uppercase; margin-bottom: 0.5rem;" id="timeline-bible-mentions-title">Bible Mentions</span>
+                    <div id="timeline-bible-mentions-list" style="overflow-y: auto; flex-grow: 1; display: flex; flex-direction: column; gap: 0.4rem; padding-right:4px;">
+                        <!-- Dynamically filled clickable links -->
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chronological Paragraphs Feed -->
+            <div id="timeline-paragraphs-area" class="timeline-area" style="flex-grow: 1; overflow-y: auto; padding: 2rem; background: var(--bg-base);">
+                <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;" id="timeline-paragraphs-feed">
+                    <!-- Dynamically populated paragraphs -->
+                </div>
+                <div id="timeline-loading-sentinel" style="text-align: center; padding: 2rem 0; color: var(--text-muted); font-size: 0.85rem; display: none;">
+                    Loading more paragraphs...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Verse Pop-out Card -->
+    <div id="verse-popout-card"></div>
+
+    <!-- Interactive Help Modal Presentation Carousel -->
+    <div id="help-modal" class="help-modal-overlay" onclick="closeHelpModalOnOuterClick(event)">
+        <div class="help-modal-content">
+            <button class="popout-close" onclick="closeHelpModal()">✕</button>
+            <div class="help-carousel">
+                <div class="help-carousel-track" id="help-carousel-track">
+                    <!-- Slide 1 -->
+                    <div class="help-slide">
+                        <h2 class="help-slide-title" id="slide-title-1">Parallel Bible Study</h2>
+                        <p class="help-slide-text" id="slide-text-1">Welcome to the premium Parallel Bible Study App! This tool enables multi-version side-by-side study, cross-commentaries, interactive timelines, and voice chatbot assistance.</p>
+                        <ul class="help-slide-list" id="slide-list-1">
+                            <li>View versions side-by-side.</li>
+                            <li>Toggle commentary on active verses.</li>
+                            <li>Talk hands-free with the study chatbot.</li>
+                        </ul>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="help-slide">
+                        <h2 class="help-slide-title" id="slide-title-2">Layout & Customization</h2>
+                        <p class="help-slide-text" id="slide-text-2">Customize the interface to suit your preference:</p>
+                        <ul class="help-slide-list" id="slide-list-2">
+                            <li>Reorder versions by dragging the reorder handles up/down.</li>
+                            <li>Set custom text size and font scale.</li>
+                            <li>Change theme background, card surface, text, and header button accent colors.</li>
+                        </ul>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="help-slide">
+                        <h2 class="help-slide-title" id="slide-title-3">Read-Aloud (TTS)</h2>
+                        <p class="help-slide-text" id="slide-text-3">Listen to the Bible text using speech synthesis:</p>
+                        <ul class="help-slide-list" id="slide-list-3">
+                            <li>Highlight any portion of text in the reader to prompt a quick "Read from here" bubble.</li>
+                            <li>The app automatically detects the selected version's language (Spanish or English) and matches the correct accent.</li>
+                            <li>Verse numbers and paragraph markers are skipped in speech to keep it natural.</li>
+                        </ul>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="help-slide">
+                        <h2 class="help-slide-title" id="slide-title-4">Chronology Timeline</h2>
+                        <p class="help-slide-text" id="slide-text-4">Explore the biblical lifespans from Ussher's Annals of the World:</p>
+                        <ul class="help-slide-list" id="slide-list-4">
+                            <li>Drag figure cards vertical positions to resolve overlaps while maintaining connector line anchors.</li>
+                            <li>Click two figures to compare gaps, lifespans, and overlap years.</li>
+                            <li>Hover or click references under Bible Mentions to instantly preview verse translations in KJV and Spanish.</li>
+                        </ul>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="help-slide">
+                        <h2 class="help-slide-title" id="slide-title-5">Hands-Free Chat & Mic Setup</h2>
+                        <p class="help-slide-text" id="slide-text-5">Keep the voice chat microphone active for a hands-free conversation:</p>
+                        <ul class="help-slide-list" id="slide-list-5">
+                            <li>Enable "Live Voice Chat" in the sidebar to talk with the AI assistant.</li>
+                            <li><strong>Important</strong>: Modern browsers require a secure HTTP origin to persist mic permission. Run the app locally via a command prompt using: <code>python -m http.server</code> and open <code>http://localhost:8000</code>.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="help-carousel-nav">
+                <button class="btn" onclick="prevHelpSlide()" id="help-prev-btn" style="padding: 4px 10px; font-size: 0.75rem; background: none; border: 1px solid var(--border-color); color: var(--text-secondary); cursor: pointer; border-radius: 4px;">Prev</button>
+                <div class="help-dots" id="help-carousel-dots">
+                    <!-- Dots will be populated dynamically -->
+                </div>
+                <button class="btn btn-primary" onclick="nextHelpSlide()" id="help-next-btn" style="padding: 4px 10px; font-size: 0.75rem; background: var(--color-accent); color: var(--bg-base); border: none; cursor: pointer; border-radius: 4px; font-weight: bold;">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Real-time Multiplayer Kahoot-Style Quiz Modal Overlay -->
+    <div id="quiz-modal" class="quiz-modal-overlay" onclick="closeQuizModalOnOuterClick(event)" style="display: none;">
+        <div class="quiz-modal-content">
+            <button class="popout-close" onclick="closeQuizModal()">✕</button>
+            
+            <!-- 1. QUIZ SETUP VIEW -->
+            <div id="quiz-view-setup" class="quiz-view">
+                <h2 class="quiz-title" data-translate="quiz_setup_title">Bible Quiz Game</h2>
+                <p class="quiz-subtitle" data-translate="quiz_setup_subtitle">Create a Kahoot-style quiz from the scriptures</p>
+                
+                <div class="quiz-form-group">
+                    <label data-translate="quiz_label_book">Select Book:</label>
+                    <select id="quiz-select-book" onchange="onQuizBookChanged()"></select>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="quiz-form-group" style="flex: 1;">
+                        <label data-translate="quiz_label_from_chapter">From Chapter:</label>
+                        <select id="quiz-select-from-ch" onchange="onQuizFromChapterChanged()"></select>
+                    </div>
+                    <div class="quiz-form-group" style="flex: 1;">
+                        <label data-translate="quiz_label_from_verse">From Verse:</label>
+                        <select id="quiz-select-from-vs"></select>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="quiz-form-group" style="flex: 1;">
+                        <label data-translate="quiz_label_to_chapter">To Chapter:</label>
+                        <select id="quiz-select-to-ch" onchange="onQuizToChapterChanged()"></select>
+                    </div>
+                    <div class="quiz-form-group" style="flex: 1;">
+                        <label data-translate="quiz_label_to_verse">To Verse:</label>
+                        <select id="quiz-select-to-vs"></select>
+                    </div>
+                </div>
+                
+                <div class="quiz-form-group">
+                    <label data-translate="quiz_label_version">Bible Version for Quiz:</label>
+                    <select id="quiz-select-version" onchange="onQuizVersionChanged()">
+                        <!-- Populated dynamically -->
+                    </select>
+                </div>
+                
+                <div class="quiz-form-group">
+                    <label data-translate="quiz_label_mode">Game Mode:</label>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 4px;">
+                        <button id="quiz-mode-single" class="mode-btn active" onclick="setQuizGameMode('single')" style="flex: 1; padding: 6px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.02); color: var(--text-primary); border-radius: 6px; cursor: pointer;" data-translate="quiz_mode_single">Single Player</button>
+                        <button id="quiz-mode-multi" class="mode-btn" onclick="setQuizGameMode('multi')" style="flex: 1; padding: 6px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.02); color: var(--text-primary); border-radius: 6px; cursor: pointer;" data-translate="quiz_mode_multi">Multiplayer Lobby</button>
+                    </div>
+                </div>
+                
+                <div id="quiz-setup-host-name-group" class="quiz-form-group" style="display: none;">
+                    <label id="quiz-label-host-name" data-translate="quiz_label_host_name">Your Host Name:</label>
+                    <input type="text" id="quiz-host-name" value="Host">
+                </div>
+
+                <div id="quiz-gemini-status" class="quiz-status-message" style="display: none; margin-bottom: 1rem;"></div>
+
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" id="quiz-generate-btn" onclick="startQuizGeneration()" data-translate="quiz_btn_create">Generate Quiz</button>
+            </div>
+            
+            <!-- 2. MULTIPLAYER HOST LOBBY VIEW -->
+            <div id="quiz-view-host-lobby" class="quiz-view" style="display: none;">
+                <h2 class="quiz-title" data-translate="quiz_lobby_title">Waiting Lobby</h2>
+                <div style="display: flex; flex-direction: column; align-items: center; margin: 1rem 0;">
+                    <div style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.25rem;" data-translate="quiz_lobby_room_code">ROOM CODE:</div>
+                    <div id="quiz-lobby-code" style="font-size: 2.5rem; font-weight: 800; letter-spacing: 4px; color: var(--color-accent); margin-bottom: 1rem;">----</div>
+                    
+                    <div id="quiz-lobby-qrcode" style="background: white; padding: 10px; border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; box-sizing: border-box;">
+                        <!-- QR Code Image -->
+                    </div>
+                    
+                    <div style="font-size: 0.7rem; color: var(--text-muted); text-align: center; word-break: break-all; max-width: 320px;" id="quiz-lobby-url-text"></div>
+                </div>
+                
+                <h3 style="font-size: 0.85rem; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 0.5rem;">
+                    <span data-translate="quiz_lobby_players">Players</span> (<span id="quiz-lobby-player-count">0</span>)
+                </h3>
+                <div id="quiz-lobby-players-list" class="quiz-players-grid">
+                    <!-- Names of players in the lobby -->
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" id="quiz-btn-start-multi" onclick="startMultiplayerGame()" data-translate="quiz_btn_start">Start Game</button>
+            </div>
+            
+            <!-- 3. CLIENT JOIN PANEL -->
+            <div id="quiz-view-client-join" class="quiz-view" style="display: none;">
+                <h2 class="quiz-title" data-translate="quiz_join_title">Join Bible Quiz</h2>
+                <p class="quiz-subtitle">
+                    <span data-translate="quiz_join_subtitle">Enter your name to connect to Room</span>
+                    <strong id="quiz-client-room-display" style="color:var(--color-accent);">----</strong>
+                </p>
+                
+                <div class="quiz-form-group">
+                    <label data-translate="quiz_label_player_name">Your Name:</label>
+                    <input type="text" id="quiz-player-name" placeholder="Enter name...">
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" onclick="submitClientJoin()" data-translate="quiz_btn_join">Join Game</button>
+            </div>
+
+            <!-- 4. CLIENT WAITING LOBBY -->
+            <div id="quiz-view-client-lobby" class="quiz-view" style="display: none; text-align: center; padding: 2rem 0;">
+                <div class="quiz-spinner" style="margin: 0 auto 1.5rem auto;"></div>
+                <h2 class="quiz-title" data-translate="quiz_client_waiting_title">You are in!</h2>
+                <p class="quiz-subtitle" data-translate="quiz_client_waiting_subtitle">Waiting for the host to start the game...</p>
+                <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem;">
+                    <span data-translate="quiz_client_joined_as">Joined as:</span> <strong id="quiz-client-name-display" style="color: var(--color-accent);"></strong>
+                </div>
+            </div>
+
+            <!-- 5. HOST QUESTION SCREEN -->
+            <div id="quiz-view-host-question" class="quiz-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span style="font-size: 0.75rem; color: var(--text-muted); font-weight: bold;" id="quiz-host-q-number">Question 1 of 5</span>
+                        <div class="host-room-info-badge" onclick="toggleLobbyQROverlay()" title="Click to show QR code / Join Link" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; color: var(--text-secondary); cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                            <span>Room: <strong class="active-room-code">XXXX</strong></span>
+                            <span style="font-size: 0.8rem; margin-left: 2px;">📱</span>
+                        </div>
+                    </div>
+                    <div id="quiz-host-timer" style="background: rgba(255,255,255,0.05); border: 2px solid var(--color-accent); border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; color: var(--color-accent);">20</div>
+                </div>
+                
+                <div id="quiz-host-question-text" style="font-size: 1.15rem; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 1.5rem; min-height: 50px; line-height:1.4;">
+                    Question Text?
+                </div>
+                
+                <!-- Single Player & Host options display grid -->
+                <div class="quiz-options-grid" id="quiz-host-options-container">
+                    <button class="quiz-option-btn opt-red" onclick="onHostClickOption(0)">
+                        <span class="shape-symbol">▲</span> <span class="opt-text" id="quiz-opt-text-0">Option A</span>
+                    </button>
+                    <button class="quiz-option-btn opt-blue" onclick="onHostClickOption(1)">
+                        <span class="shape-symbol">◆</span> <span class="opt-text" id="quiz-opt-text-1">Option B</span>
+                    </button>
+                    <button class="quiz-option-btn opt-yellow" onclick="onHostClickOption(2)">
+                        <span class="shape-symbol">●</span> <span class="opt-text" id="quiz-opt-text-2">Option C</span>
+                    </button>
+                    <button class="quiz-option-btn opt-green" onclick="onHostClickOption(3)">
+                        <span class="shape-symbol">■</span> <span class="opt-text" id="quiz-opt-text-3">Option D</span>
+                    </button>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);" id="quiz-host-answers-count">Responses: 0 / 0</span>
+                    <button class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 6px 12px; border-radius: 6px; cursor: pointer; color:var(--text-primary);" id="quiz-btn-skip-question" onclick="endQuizQuestionTimer()" data-translate="quiz_btn_skip">Skip</button>
+                </div>
+            </div>
+
+            <!-- 6. HOST RESULTS SCREEN -->
+            <div id="quiz-view-host-results" class="quiz-view" style="display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                    <h2 class="quiz-title" style="margin-bottom: 0;" data-translate="quiz_results_title">Results</h2>
+                    <div class="host-room-info-badge" onclick="toggleLobbyQROverlay()" title="Click to show QR code / Join Link" style="background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; color: var(--text-secondary); cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;">
+                        <span>Room: <strong class="active-room-code">XXXX</strong></span>
+                        <span style="font-size: 0.9rem; margin-left: 2px;">📱</span>
+                    </div>
+                </div>
+                
+                <div id="quiz-results-reveal" style="text-align: center; margin-bottom: 1.5rem; padding: 12px; background: rgba(16, 185, 129, 0.05); border: 1px solid #10b981; border-radius: 8px;">
+                    <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: bold;" data-translate="quiz_label_correct_ans">CORRECT ANSWER:</div>
+                    <div id="quiz-correct-answer-text" style="font-size: 1rem; font-weight: bold; color: #10b981; margin-top: 4px;">Option Text</div>
+                </div>
+
+                <!-- Answer distribution chart -->
+                <div style="margin-bottom: 1.5rem;">
+                    <h3 style="font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.5rem;" data-translate="quiz_label_responses">Responses:</h3>
+                    <div class="quiz-chart-container">
+                        <div class="quiz-chart-col">
+                            <div class="quiz-chart-bar bar-red" id="quiz-bar-0" style="height: 0%;">0</div>
+                            <span class="shape-symbol">▲</span>
+                        </div>
+                        <div class="quiz-chart-col">
+                            <div class="quiz-chart-bar bar-blue" id="quiz-bar-1" style="height: 0%;">0</div>
+                            <span class="shape-symbol">◆</span>
+                        </div>
+                        <div class="quiz-chart-col">
+                            <div class="quiz-chart-bar bar-yellow" id="quiz-bar-2" style="height: 0%;">0</div>
+                            <span class="shape-symbol">●</span>
+                        </div>
+                        <div class="quiz-chart-col">
+                            <div class="quiz-chart-bar bar-green" id="quiz-bar-3" style="height: 0%;">0</div>
+                            <span class="shape-symbol">■</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div>
+                    <h3 style="font-size: 0.85rem; border-bottom: 1px solid var(--border-color); padding-bottom: 4px; margin-bottom: 0.5rem;" data-translate="quiz_label_leaderboard">Leaderboard</h3>
+                    <div id="quiz-leaderboard-list" style="display: flex; flex-direction: column; gap: 0.4rem; max-height: 180px; overflow-y: auto;">
+                        <!-- Top players lists -->
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%; margin-top: 1.5rem; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" onclick="advanceQuizQuestion()" data-translate="quiz_btn_next">Next</button>
+            </div>
+
+            <!-- 7. PLAYER SCREEN (PHONE CONTROLLER) -->
+            <div id="quiz-view-player-controller" class="quiz-view" style="display: none; height: 100%;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">
+                    <span style="font-size: 0.8rem; font-weight: bold; color: var(--color-accent);" id="quiz-client-nickname">Nickname</span>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);" id="quiz-client-score-display">0 pts</span>
+                </div>
+                
+                <!-- Client Waiting View -->
+                <div id="quiz-client-waiting-screen" style="text-align: center; padding: 2rem 0;">
+                    <h2 class="quiz-title" data-translate="quiz_client_waiting_title_prep">Prepare</h2>
+                    <p class="quiz-subtitle" data-translate="quiz_client_waiting_subtitle_prep">Look at the host screen for the question!</p>
+                </div>
+                
+                <!-- Client Options Buttons -->
+                <div id="quiz-client-buttons-screen" class="quiz-options-grid" style="display: none; height: calc(100% - 60px);">
+                    <button class="quiz-option-btn opt-red" onclick="submitClientAnswer(0)" style="font-size: 2.5rem; height: 100px; display:flex; align-items:center; justify-content:center;">▲</button>
+                    <button class="quiz-option-btn opt-blue" onclick="submitClientAnswer(1)" style="font-size: 2.5rem; height: 100px; display:flex; align-items:center; justify-content:center;">◆</button>
+                    <button class="quiz-option-btn opt-yellow" onclick="submitClientAnswer(2)" style="font-size: 2.5rem; height: 100px; display:flex; align-items:center; justify-content:center;">●</button>
+                    <button class="quiz-option-btn opt-green" onclick="submitClientAnswer(3)" style="font-size: 2.5rem; height: 100px; display:flex; align-items:center; justify-content:center;">■</button>
+                </div>
+                
+                <!-- Client Feedback View -->
+                <div id="quiz-client-feedback-screen" style="display: none; text-align: center; padding: 2rem 0; border-radius: 8px;">
+                    <div id="quiz-client-feedback-badge" style="font-size: 3rem; margin-bottom: 0.5rem;">✓</div>
+                    <h2 class="quiz-title" id="quiz-client-feedback-text">Correct!</h2>
+                    <p class="quiz-subtitle" id="quiz-client-feedback-points">+950 pts</p>
+                </div>
+            </div>
+
+            <!-- 8. PODIUM / END GAME SCREEN -->
+            <div id="quiz-view-end" class="quiz-view" style="display: none; text-align: center; padding: 1.5rem 0;">
+                <h2 class="quiz-title" style="font-size: 1.8rem; color: var(--color-accent); margin-bottom: 1.5rem;" data-translate="quiz_end_title">🏆 Game Over! 🏆</h2>
+                
+                <div class="podium-container">
+                    <!-- 2nd place -->
+                    <div class="podium-step step-2" id="podium-2" style="display: none;">
+                        <div class="podium-name" id="podium-name-2">Second</div>
+                        <div style="background: silver; width: 100%; height: 60px; border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: center; color: var(--bg-base); font-weight: 800; font-size: 1.5rem;">2</div>
+                    </div>
+                    <!-- 1st place -->
+                    <div class="podium-step step-1" id="podium-1" style="display: none;">
+                        <div class="podium-name" id="podium-name-1" style="color: var(--color-accent);">Winner</div>
+                        <div style="background: gold; width: 100%; height: 90px; border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: center; color: var(--bg-base); font-weight: 800; font-size: 2rem;">1</div>
+                    </div>
+                    <!-- 3rd place -->
+                    <div class="podium-step step-3" id="podium-3" style="display: none;">
+                        <div class="podium-name" id="podium-name-3">Third</div>
+                        <div style="background: #cd7f32; width: 100%; height: 40px; border-radius: 4px 4px 0 0; display: flex; align-items: center; justify-content: center; color: var(--bg-base); font-weight: 800; font-size: 1.25rem;">3</div>
+                    </div>
+                </div>
+
+                <div id="quiz-final-leaderboard" style="max-width: 360px; margin: 0 auto 1.5rem auto; text-align: left; display:flex; flex-direction:column; gap:6px;">
+                    <!-- Leaders list -->
+                </div>
+
+                <button class="btn btn-primary" style="width: 100%; max-width: 320px; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" onclick="resetQuizToSetup()" data-translate="quiz_btn_exit">Exit</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- Random Verse Lookup Game Modal Overlay -->
+    <div id="random-verse-modal" class="quiz-modal-overlay" onclick="closeRandomVerseModalOnOuterClick(event)" style="display: none;">
+        <div class="quiz-modal-content" style="max-width: 500px;">
+            <button class="popout-close" onclick="closeRandomVerseModal()">✕</button>
+            <h2 class="quiz-title" data-translate="random_game_title">Random Verse Lookup</h2>
+            <p class="quiz-subtitle" data-translate="random_game_subtitle">Find the verse in your physical Bible, then click or hover to reveal and verify!</p>
+            
+            <!-- Setup & Version Selector inside this game modal -->
+            <div id="random-game-setup" class="quiz-form-group">
+                <label data-translate="random_game_label_version">Select Bible Version:</label>
+                <select id="random-game-select-version" onchange="updateRandomGameLanguage()" style="width: 100%; margin-bottom: 1rem; padding: 6px; border: 1px solid var(--border-color); background: var(--bg-surface); color: var(--text-primary); border-radius: 6px;"></select>
+                <button class="btn btn-primary" style="width: 100%; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer;" onclick="drawRandomVerse()" data-translate="random_game_btn_draw">Draw Random Verse</button>
+            </div>
+            
+            <!-- Game Play Screen -->
+            <div id="random-game-play" style="display: none; text-align: center; margin-top: 1.5rem;">
+                <div id="random-verse-reference" style="font-size: 1.8rem; font-weight: 800; color: var(--color-accent); margin-bottom: 1.5rem; border: 2px dashed var(--border-color); padding: 1rem; border-radius: 8px; background: rgba(255,255,255,0.01);">
+                </div>
+                
+                <!-- Hidden Verse Content Container -->
+                <div id="random-verse-reveal-container" style="margin-top: 1.5rem; min-height: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+                    <button id="random-verse-reveal-btn" class="btn btn-primary" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 12px 24px; border-radius: 8px; cursor: pointer; transition: all 0.2s; font-weight: bold;" onclick="revealRandomVerseContent()" data-translate="random_game_btn_reveal">
+                        Click/Hover to Reveal Content
+                    </button>
+                    <div id="random-verse-content-text" style="display: none; font-size: 1.1rem; line-height: 1.5; color: var(--text-primary); text-align: left; padding: 12px; border-left: 3px solid var(--color-accent); background: rgba(255,255,255,0.02); border-radius: 4px; width: 100%; box-sizing: border-box; word-break: break-word;">
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem; margin-top: 2rem; width: 100%;">
+                    <button class="btn btn-primary" style="flex: 1; background: var(--color-accent); color: var(--bg-base); border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold;" onclick="drawRandomVerse()" data-translate="random_game_btn_next">Next Verse 🎲</button>
+                    <button class="btn" style="flex: 1; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); color: var(--text-primary); padding: 10px; border-radius: 8px; cursor: pointer;" onclick="closeRandomVerseModal()" data-translate="quiz_btn_exit">Exit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </main>
+
+    <!-- Script loading & dynamic DOM control -->
+    <script src="local_ip.js" onerror="console.log('Running without local_ip.js')"></script>
+    <script src="bible_metadata.js"></script>
+    <script src="commentary_metadata.js"></script>
+    <script src="app.js"></script>
+    <!-- Fixed Panel Collapse Buttons - always accessible -->
+    <!-- Left sidebar toggle: fixed at right edge of sidebar -->
+    <button id="left-panel-collapse-btn" class="fixed-panel-collapse-btn" onclick="toggleLeftPanel()" title="Hide/Show left panel">◀</button>
+
+    <!-- Right study panel toggle: always visible -->
+    <button id="right-panel-collapse-btn" class="fixed-panel-collapse-btn" onclick="toggleRightPanel()" title="Hide/Show right panel">◀</button>
+
+    <!-- Pop-up overlay for QR Code during game -->
+    <div id="quiz-host-qr-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); z-index: 10005; align-items: center; justify-content: center; flex-direction: column; cursor: pointer;" onclick="toggleLobbyQROverlay()">
+        <div style="background: var(--bg-surface); padding: 2rem; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; max-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);" onclick="event.stopPropagation()">
+            <h3 style="margin-bottom: 1rem; font-family: var(--font-display); color: var(--color-accent);" data-translate="quiz_lobby_join_title">Scan to Join Game</h3>
+            <div id="quiz-host-qr-overlay-img" style="margin: 0 auto 1rem auto; width: 180px; height: 180px; display: flex; align-items: center; justify-content: center; background: white; padding: 10px; border-radius: 8px;"></div>
+            <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-primary);">Room: <span class="active-room-code" style="color: var(--color-accent);"></span></p>
+            <button class="btn" style="margin-top: 1rem; width: 100%; font-weight: bold; background: var(--color-accent); color: var(--bg-base); border: none; padding: 8px; border-radius: 6px; cursor: pointer;" onclick="toggleLobbyQROverlay()">Close</button>
+        </div>
+    </div>
+
+</body>
+</html>

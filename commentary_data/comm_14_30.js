@@ -1,0 +1,86 @@
+bible_loader.load_commentary(14, 30, {
+  "6": {
+    "Commentary Vol. 2": "Whereupon the princes of Israel and the king humbled themselves,\netc.] Both by words acknowledging their sins, and the justice of God, and\nby deeds, perhaps putting on sackcloth, as was usual on such occasions,\nand betaking themselves to fasting and prayer:\nand they said, the Lord is righteous; in giving them up into the hand of\ntheir enemies, seeing they had forsaken him, and sinned against him.\nVer.",
+    "John Trapp": "Ye children of Israel, turn again to the Lord. ] Hezekiah knew that the poor remnant of Israel were in great affliction: he therefore presseth them to repentance, whereby men return to God, as by sin they run from him. Afflictiones sunt lex practice { #Ps 119:71 } Hezekiah thought it was good striking while the iron was hot.\nVer.\n6. Ye children of Israel, turn again to the Lord.] Hezekiah knew that the poor remnant of Israel were in great affliction: he therefore presseth them to repentance, whereby men return to God, as by sin they run from him. Afflictiones sunt lex practice {#Ps 119:71} Hezekiah thought it was good striking while the iron was hot.\nVer."
+  },
+  "7": {
+    "Commentary Vol. 2": "And when the Lord saw that they humbled themselves, etc.]\nThough but externally; the Lord takes notice of external humiliation, as he\n[v_1Ki_21_29] did of Ahab\u2019s, (<112129>1 Kings 21:29),\nthe word of the Lord came to Shemaiah, saying, they have humbled\nthemselves, therefore I will not destroy them; not now, at least not\n[v_2Ch_12_12] altogether, (<141212>2 Chronicles 12:12),\nbut I will grant them some deliverance; yet not a complete one, for they\n[v_2Ch_12_8] were brought into servitude by Shishak, (<141208>2 Chronicles 12:8), or only for\na short time:\nand my wrath shall not be poured out against Jerusalem by the hand of\nShishak; that is, to the uttermost; that was reserved to another time, and to\nbe done by another hand, Nebuchadnezzar king of Babylon.\nVer.",
+    "John Trapp": "Who gave them up to desolation. ] Heb., To astonishment: fecit ut omnes mirarentur, ac misererentur. As ye see. ] For it is to be hoped that your afflictions\u2014those pillulae lucis -have cleared up your eyesight.\nVer.\n7. Who gave them up to desolation.] Heb., To astonishment: fecit ut omnes mirarentur, ac misererentur. As ye see.] For it is to be hoped that your afflictions\u2014those pillulae lucis -have cleared up your eyesight.\nVer."
+  },
+  "8": {
+    "Commentary Vol. 2": "Nevertheless, they shall be his servants, etc.] tributaries to the king\nof Egypt:\nthat they may know my service, and the service of the kingdoms of the\ncountries; the difference between them, how easy the one, which they\nmight perform without taxes and tributes, and how hard and heavy the\nother, through the exactions and exorbitant demands of those to whom\nthey became subjects.",
+    "John Trapp": "But yield yourselves unto the Lord. ] Heb., Give the hand; i.e., submit to his justice, and implore his mercy; put yourselves into the hands of justice, in hope of mercy. \"Humble yourselves under the mighty hand of God, that he may lift you up.\" { #Jas 5:10 } \"He will not take the wicked by the hand.\" { #Job 8:20 , margin }\nVer.\n8. But yield yourselves unto the Lord.] Heb., Give the hand; i.e., submit to his justice, and implore his mercy; put yourselves into the hands of justice, in hope of mercy. \"Humble yourselves under the mighty hand of God, that he may lift you up.\" {#Jas 5:10} \"He [v_Job_8_20] will not take the wicked by the hand.\" {#Job 8:20, margin}\nVer."
+  },
+  "1": {
+    "John Trapp": "To Ephraim and Manasseh. ] That is, To all that were left of the ten tribes under king Hoshea, who, being rather atheist than idolater, and brought very low by the Assyrian, hindered not the people\u2019s going up to the temple. The good of our brethren in other kingdoms mast also be minded.\nVer.\n1. To Ephraim and Manasseh.] That is, To all that were left of the ten tribes under king Hoshea, who, being rather atheist than idolater, and brought very low by the Assyrian, hindered not the people\u2019s going up to the temple. The good of our brethren in other kingdoms mast also be minded.\nVer."
+  },
+  "2": {
+    "John Trapp": "To keep the passover in the second month. ] He knew that nunquam sero si serio. See #Nu 9:10 . If we can but say, with Augustine, Nimis sero te amavi Domine, all shall do well.\nVer.\n2. To keep the passover in the second month.] He knew that [v_Num_9_10] nunquam sero si serio. See #Nu 9:"
+  },
+  "3": {
+    "John Trapp": "For they could not keep it at that time. ] Namely, On the fourteenth day of the first month, for the two following reasons. See the like, #Nu 9:10,11 .\nVer.\n3. For they could not keep it at that time.] Namely, On the fourteenth day of the first month, for the two following reasons. See [v_Num_9_10] the like, #Nu 9:10,"
+  },
+  "4": {
+    "John Trapp": "And all the congregation. ] Who might here well say, in the courtier\u2019s language, Whatsoever pleaseth the king shall please me.\nVer.\n4. And all the congregation.] Who might here well say, in the courtier\u2019s language, Whatsoever pleaseth the king shall please me.\nVer."
+  },
+  "5": {
+    "John Trapp": "For they had not done it of a long time. ] So easily falleth religion to the ground under bad princes and priests: such as were Ahaz and Uriah.\nVer.\n5. For they had not done it of a long time.] So easily falleth religion to the ground under bad princes and priests: such as were Ahaz and Uriah.\nVer."
+  },
+  "9": {
+    "John Trapp": "Your brethren\u2026shall find compassion, &amp;c. ] A forcible reason; if but for your poor brethren and children\u2019s sake, who shall find favour with their enemies for your piety and prayers, turn to the Lord. This because they did not, themselves also were shortly after carried captive by Shalmaneser, and never returned.\nVer.\n9. Your brethren\u2026shall find compassion, &c.] A forcible reason; if but for your poor brethren and children\u2019s sake, who shall find favour with their enemies for your piety and prayers, turn to the Lord. This because they did not, themselves also were shortly after carried captive by Shalmaneser, and never returned.\nVer."
+  },
+  "10": {
+    "John Trapp": "But they laughed them to scorn. ] So profane and superstitious they were; so ready ripe for rain. It is a sad foretoken of a common calamity, when religion is become a matter, not of form only, but of scorn. Josephus saith that these Israelites thus invited slew both the messengers, and those prophets also that exhorted them to go up.\nVer.\n10. If we can but say, with Augustine, Nimis sero te amavi Domine, all shall do well.\nVer.\n10. But they laughed them to scorn.] So profane and superstitious they were; so ready ripe for rain. It is a sad foretoken of a common calamity, when religion is become a matter, not of form only, but of scorn. Josephus saith that these Israelites thus invited slew both the messengers, and those prophets also that exhorted them to go up.\nVer."
+  },
+  "11": {
+    "John Trapp": "Nevertheless, divers of Asher\u2026 humbled. ] And were hid, no doubt, when the rest were carried captive by Shalmaneser. Preserved they were, if not from the common destruction, yet from the common distraction; for God \"will save the humble person.\" { #Job 22:29 }\nVer.\n11. Ver.\n11. Nevertheless, divers of Asher\u2026 humbled.] And were hid, no doubt, when the rest were carried captive by Shalmaneser. Preserved they were, if not from the common destruction, yet from the common distraction; for God \"will save the humble person.\" [v_Job_22_29] {#Job 22:29}\nVer."
+  },
+  "12": {
+    "John Trapp": "Also in Judah the hand of God, ] i.e., The grace of God; whose alone it is to work the heart to good, and to give \"repentance unto life.\" His grace is irresistible.\nVer.\n12. Also in Judah the hand of God, ] i.e., The grace of God; whose alone it is to work the heart to good, and to give \"repentance unto life.\" His grace is irresistible.\nVer."
+  },
+  "13": {
+    "John Trapp": "A very great congregation. ] Brought thither by God\u2019s holy hand; { #2Ch 30:12 } yea, the arm of the Lord was revealed unto them. { #Isa 53:1 }\nVer.\n13. A very great congregation.] Brought thither by God\u2019s holy hand; {#2Ch 30:12} yea, the arm of the Lord was revealed [v_Isa_53_1] unto them. {#Isa 53:1}\nVer."
+  },
+  "14": {
+    "John Trapp": "And took away the altars. ] With other instruments of superstition: the brazen serpent also, because it was abused by the people. See #2Ki 18:4 . { See Trapp on \"2Ki 18:4\" }\nVer.\n14. And took away the altars.] With other instruments of superstition: the brazen serpent also, because it was abused by the people. See #2Ki 18:4. {See Trapp on \"2Ki 18:4\"}\nVer."
+  },
+  "15": {
+    "John Trapp": "Then they killed the passover. ] So must we first cast the baggage into the brook, and then come to the Lord\u2019s supper. { #1Co 5:7,8 } And the priests and Levites were ashamed. ] As well they might, that they had been so slack and backward to so good a business, so generally and zealously set upon.\nVer.\n15. Then they killed the passover.] So must we first cast the baggage into the brook, and then come to the Lord\u2019s supper. {#1Co 5:7,8} And the priests and Levites were ashamed.] As well they might, that they had been so slack and backward to so good a business, so generally and zealously set upon.\nVer."
+  },
+  "16": {
+    "John Trapp": "The blood which they received of the hands of the Levites. ] Part of the blood they sprinkled as a type of that \"blood of sprinkling, that speaketh better things\" for us; and part to be poured out by the priest upon the earth, to show that the best have deserved to be destroyed, and that God is the Lord of life and of death.\nVer.\n16. The blood which they received of the hands of the Levites.] Part of the blood they sprinkled as a type of that \"blood of sprinkling, that speaketh better things\" for us; and part to be poured out by the priest upon the earth, to show that the best have deserved to be destroyed, and that God is the Lord of life and of death.\nVer."
+  },
+  "17": {
+    "John Trapp": "The charge of the killing of the passovers. ] That is, Not only of the paschal lamb, but of the passover offerings, { #2Ch 35:7,8 } called here passovers.\nVer.\n17. The charge of the killing of the passovers.] That is, Not only of the paschal lamb, but of the passover offerings, {#2Ch 35:7,8} called here passovers.\nVer."
+  },
+  "18": {
+    "John Trapp": "Many of Ephraim and Manasseh, &amp;c. ] Who had been a long while without God, without law, and without a teaching priest; { #2Ch 15:3 } these came rudely and unreverently to the passover, and some way smarted for it. In the gospel, he that came in without a wedding garment on his back, went not out without fetters on his feet. And \"for this cause many are weak and sickly amongst you, and some are fallen asleep,\" i.e., dead outright. { #1Co 11:30 } The good Lord pardon every one. ] Iehovah optimus praestet Spiritu suo quod isti temporis importunitate praetermiserunt: the good Lord make us by his Spirit, what, through want of time or means, is wanting to this poor people, and graciously accept their weak but willing services, &amp;c.\nVer.\n18. Many of Ephraim and Manasseh, &c.] Who had been a long while without God, without law, and without a teaching priest; {#2Ch 15:3} these came rudely and unreverently to the passover, and some way smarted for it. In the gospel, he that came in without a wedding garment on his back, went not out without fetters on his feet. And \"for this cause many are weak and sickly amongst you, and some are fallen asleep,\" i.e., dead outright. {#1Co 11:30} The good Lord pardon every one.] Iehovah optimus praestet Spiritu suo quod isti temporis importunitate praetermiserunt: the good Lord make us by his Spirit, what, through want of time or means, is wanting to this poor people, and graciously accept their weak but willing services, &c.\nVer."
+  },
+  "19": {
+    "John Trapp": "That prepareth his heart. ] As well as he is able, though he fall far short of what he should be. The bent, frame, and tendencies of the heart show what the man is.\nVer.\n19. That prepareth his heart.] As well as he is able, though he fall far short of what he should be. The bent, frame, and tendencies of the heart show what the man is.\nVer."
+  },
+  "20": {
+    "John Trapp": "And healed the people. ] He healed them on both sides: \"he forgave all their iniquities, and healed all their diseases.\" { #Ps 103:3 }\nVer.\n20. And healed the people.] He healed them on both sides: \"he forgave all their iniquities, and healed all their diseases.\" {#Ps 103:3}\nVer."
+  },
+  "21": {
+    "John Trapp": "Singing with loud instruments. ] Heb., With instruments of strength; or, concerning the strength and power of God, as Munster senseth it.\nVer.\n21. Singing with loud instruments.] Heb., With instruments of strength; or, concerning the strength and power of God, as Munster senseth it.\nVer."
+  },
+  "22": {
+    "John Trapp": "And Hezekiah spake comfortably to all the Levites. ] Heb., To the heart of all the Levites: he cheered them up, and encouraged them to do their work lustily, promising them his best assistance. Few such princes. Some { a } sense the words thus: He spake unto them words piercing to the heart, that they should take upon them and continue the care of instructing the people. Others thus: He instructed them in the free grace and rich mercy of God, who accepteth of those that are upright in heart, though there may be some outward failings. A most comfortable doctrine indeed. That taught the good knowledge of the Lord. ] And therefore had the more need of encouragement under so laborious an employment. { a } Cajetan.\nVer.\n22. And Hezekiah spake comfortably to all the Levites.] Heb., To the heart of all the Levites: he cheered them up, and encouraged them to do their work lustily, promising them his best assistance. Few such princes. Some {a} sense the words thus: He spake unto them words piercing to the heart, that they should take upon them and continue the care of instructing the people. Others thus: He instructed them in the free grace and rich mercy of God, who accepteth of those that are upright in heart, though there may be some outward failings. A most comfortable doctrine indeed. That taught the good knowledge of the Lord.] And therefore had the more need of encouragement under so laborious an employment. {a} Cajetan.\nVer."
+  },
+  "23": {
+    "John Trapp": "And they kept other seven days. ] Gaudet solennitas haec produci, as Augustine saith of the feast of pentecost. This they did, partly to make amends for their former neglect of this holy service, and partly to keep their hearts in so good a frame, to retain the gladness they had in the first seven: as the silkworm stretcheth forth herself before she spinneth her finest thread.\nVer.\n23. And they kept other seven days.] Gaudet solennitas haec produci, as Augustine saith of the feast of pentecost. This they did, partly to make amends for their former neglect of this holy service, and partly to keep their hearts in so good a frame, to retain the gladness they had in the first seven: as the silkworm stretcheth forth herself before she spinneth her finest thread.\nVer."
+  },
+  "24": {
+    "John Trapp": "And the princes gave a thousand bullocks. ] Neither the king nor princes spared for cost to further so good a motion, and to draw the people to stay with delight; those of the ten tribes especially, that they may be better instructed.\nVer.\n24. And the princes gave a thousand bullocks.] Neither the king nor princes spared for cost to further so good a motion, and to draw the people to stay with delight; those of the ten tribes especially, that they may be better instructed.\nVer."
+  },
+  "25": {
+    "John Trapp": "And all the congregation\u2026rejoiced. ] This was right; for all God\u2019s worships were to be celebrated with joy; { #De 12:7 } and joy is a condition of an acceptable service. { #De 26:14 } Sacrifices offered in mourning were an abomination, { #Ho 9:4 } yea, accursed of God. { #De 28:47 }\nVer.\n25. And all the congregation\u2026rejoiced.] This was right; for [v_Deu_12_7] all God\u2019s worships were to be celebrated with joy; {#De 12:7} and [v_Deu_26_14] joy is a condition of an acceptable service. {#De 26:14} Sacrifices [v_Hos_9_4] offered in mourning were an abomination, {#Ho 9:4} yea, accursed [v_Deu_28_47] of God. {#De 28:47}\nVer."
+  },
+  "26": {
+    "John Trapp": "There was not the like in Jerusalem. ] Since the revolt of the ten tribes, there was not such a panegyris, or general assembly, nor so great a festivity.\nVer.\n26. There was not the like in Jerusalem.] Since the revolt of the ten tribes, there was not such a panegyris, or general assembly, nor so great a festivity.\nVer."
+  },
+  "27": {
+    "John Trapp": "Arose and blessed the people. ] Which was a part of their office. See the form. { #Nu 6:23 }\n27. Arose and blessed the people.] Which was a part of their [v_Num_6_23] office. See the form. {#Nu 6:23}"
+  }
+});

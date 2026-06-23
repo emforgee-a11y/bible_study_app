@@ -1,0 +1,5 @@
+bible_loader.load_commentary(18, 53, {
+  "1": {
+    "Unknown": "They who designed to secure themselves from all fear and danger by their contempt of God, and by the persecution of good men, and by other wicked courses, were by those means filled with the terrors which they sought to avoid. Hath scattered the bones; hath not only broken their bones , i.e. their strength and force, which is oft noted by the bones, as Psa_6:2 31:10 51:8, but also dispersed them hither and thither, so as there is no hopes of a reunion and restoration. Against thee, i.e. against my people, expressed, Psa_53:4, or Israel, or Zion, as it is in the next verse. Thou, O Zion, or Jerusalem, which they besiege, hast put them to shame, for the great and strange disappointment of their hopes and confidence. It was a great reproach to them, for such numerous and mighty forces to be baffled and conquered by those whom they thought to swallow up at a morsel. Despised them; or, rejected them ; cursed them. Therefore it is no wonder if they could not stand before thee. [v_Psa_53_6]"
+  }
+});

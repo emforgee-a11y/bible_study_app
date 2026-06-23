@@ -1,0 +1,5 @@
+bible_loader.load_commentary(20, 55, {
+  "8": {
+    "Milton P. Horne": ");\nwhen I sit in darkness; or \u201cthough\u201df218. The Targum is,\n\u201cas it were in darkness;\u201d\nnot in a state of unregeneracy, which is a state of total darkness, but in\naffliction and distress; for, as light often signifies prosperity, so darkness\nadversity, any afflictive dispensation of Providence; and especially when\nthis attended with desertion, or the hidings of God\u2019s face; it is to be, not\nwithout any light of grace in the heart, or without the light of the word, or\nmeans of grace; but to be without the light of God\u2019s countenance; which is\nvery uncomfortable, and makes dark providences darker still; (see\n[v_Isa_50_10] <235010>Isaiah `[char_Isaiah_Gen_26]` 50:10); yet, notwithstanding all this,\nthe Lord [shall be] a light unto me; by delivering out of affliction; by\nlifting up the light of his countenance; by causing Christ the sun of\nrighteousness to arise; by sending his Spirit to illuminate, refresh, and\ncomfort; by his word, which is a lamp to the feet, a light to the path, a light\n[v_Psa_27_1] shining in a dark place; (see <192701>"
+  }
+});

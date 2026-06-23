@@ -1,0 +1,11 @@
+{
+  "name": "Parallel Bible Study & Commentary",
+  "short_name": "BibleStudy",
+  "description": "Parallel Bible Study with Commentaries and AI Study Agent",
+  "start_url": "./index.html",
+  "background_color": "#090d16",
+  "theme_color": "#0f172a",
+  "display": "standalone",
+  "orientation": "any",
+  "icons": []
+}

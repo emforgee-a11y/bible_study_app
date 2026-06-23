@@ -1,0 +1,41 @@
+bible_loader.load_commentary(7, 68, {
+  "18": {
+    "Warren W. Wiersbe": "The emphasis is on God\u2019s mighty acts on behalf of Israel resulting in His decision to dwell on Mount Zion. Several names of God are used, including Elohim (twenty-three times), Jehovah, Jah (short for Jehovah, as in hallelujah, Elijah, etc.), Adonai (six times), and Shaddai. The psalm is messianic; Paul quotes\nverse 18 in Ephesians 4:8 [c_Eph_4] [v_Eph_4_8]  and applies it to the ascension of Christ. The use of \u201ctemple\u201d in\nverse 18 in Ephesians 4:8 [c_Eph_4] [v_Eph_4_8]  when referring to the ascension of Christ (see also Acts 2:30 [c_Act_2] [v_Act_2_30] \u201336; Col. 2:15 [c_Col_2] [v_Col_2_15] ). A king ascending the throne both receives and gives gifts, and even those who reject him will honor him outwardly."
+  },
+  "29": {
+    "Warren W. Wiersbe": "doesn\u2019t prohibit Davidic authorship since the word hekal was applied to the tabernacle as well (1 Sam. 1:9 [c_1Sa_1] [v_1Sa_1_9] ; 3:3; and see Ps. 5:7 [c_Psa_5] [v_Psa_5_7]  ; 18:6; 27:4; 65:4) . The psalm is a jubilant hymn of praise to Jehovah in which the nation of Israel gives four expressions of triumph through their God."
+  },
+  "1": {
+    "Warren W. Wiersbe": "Our God Is Coming to Us (vv. 1\u20136).\nVerse 1 is a quotation from Numbers 10:33 [c_Num_10] [v_Num_10_33] \u201335, Israel\u2019s \u201cmarching cry\u201d whenever they set out on their journeys. The quotation is fitting because the psalm pictures the Lord \u201con the march\u201d on behalf of His people. He fights their battles, leads them into the land of their inheritance, and takes up residence in the sanctuary on Mount Zion. The enemies of Israel are blown away like smoke (37:20) and melted like wax (97:5), while the righteous (Israel) rejoice at God\u2019s works and sing His praises. The phrase \u201cextol him that rideth upon the heavens\u201d or \u201con the clouds\u201d ("
+  },
+  "4": {
+    "Warren W. Wiersbe": "NIV ) should probably read \u201ccast up a highway for Him who rides through the deserts\u201d ( AB ). It\u2019s the picture of an Eastern monarch and his entourage approaching a town and the citizens clearing away the obstacles on the road (Isa. 40:3 [c_Isa_40] [v_Isa_40_3] ; 57:14; 62:10; Matt. 3:1 [c_Mat_3] [v_Mat_3_1] \u20133). The coming of the King encourages the helpless people, especially the orphans and widows, the lonely, and those imprisoned unjustly (vv. 5\u20136; see Deut. 10:18 [c_Deu_10] [v_Deu_10_18] \u201319; 27:17\u201319; Luke 4:16 [c_Luk_4] [v_Luk_4_16] \u201319). But the rebels had better be careful! They might be cast out of the Promised Land, which flows with milk and honey!\n4. Our God Receives Universal Tribute (vv. 28\u201335). This closing section has prophetic overtones as it describes the Gentile nations submitting to Jehovah, the God of Israel, and bringing Him their worship (Isa. 2:1 [c_Isa_2] [v_Isa_2_1] \u20134; Rev. 21:24 [c_Rev_21] [v_Rev_21_24] ). Until the Lord reigns in Jerusalem, there can be no peace on earth (Isa. 9:6 [c_Isa_9] [v_Isa_9_6] \u20137; 11:1\u20139). God will defeat Israel\u2019s old enemy Egypt, along with her allies (see Ezek. 29), and they will send envoys to Jerusalem with tribute. The Gentile nations will join Israel in singing praises to the Lord and extolling His majesty and power. Perhaps the sanctuary of"
+  },
+  "2": {
+    "Warren W. Wiersbe": "Our God Is Marching before Us (vv. 7\u201318). David reviewed the triumphant march of Israel, beginning with their exodus from Egypt and the journey to Sinai (vv. 7\u20138; and see Ex. 12\u201419, especially 19:9, 16). The rain can be taken literally, but it might also refer to the manna that came down six days a week (Ps. 78:24 [c_Psa_78] [v_Psa_78_24] , 27; Ex. 16:4 [c_Exo_16] [v_Exo_16_4] ; Deut. 11:10 [c_Deu_11] [v_Deu_11_10] \u201312). Then Israel entered the land and conquered it (vv. 9\u201314) because the Lord spoke the word of victory ("
+  },
+  "11": {
+    "Warren W. Wiersbe": "; see 33:11). He had promised Israel they would take the land, and they did (Ex. 23:20 [c_Exo_23] [v_Exo_23_20] \u201333; Deut. 11:22 [c_Deu_11] [v_Deu_11_22] \u201332). As at the exodus (Ex. 15:20 [c_Exo_15] [v_Exo_15_20] \u201321), it was the women who sang the praises of the Lord. (See also"
+  },
+  "25": {
+    "Warren W. Wiersbe": "; Judg. 5 ; 1 Sam. 18:6 [c_1Sa_18] [v_1Sa_18_6] \u20137.) Students have long been puzzled by\nverses 13\u201314 and don\u2019t always agree on either their translations or their interpretations. There appears to be a reference to the Song of Deborah in Judges 5:15\u201318 where she shamed Reuben for staying home and not fighting the enemy but praised Benjamin, Zebulun, and Naphtali for joining in the battle. These three tribes are commended in 68:27, but we don\u2019t know of any tribes that failed to participate in the conquering of Canaan. The New Living Translation interprets\nverses 12\u201314, \u201cEnemy kings and their armies flee, while the women of Israel divide the plunder. Though they lived among the sheepfolds, now they are covered with silver and gold, as a dove is covered by its wings. The Almighty scattered the enemy kings like a blowing snowstorm on Mount Zalmon.\u201d Israel is compared to a turtledove in 74:"
+  },
+  "19": {
+    "Warren W. Wiersbe": "But God conquered Canaan, not only to give His people a home but also to secure a \u201chome\u201d for Himself. He chose Mount Zion, though it was much smaller and less imposing than Mount Hermon, which is over nine thousand feet high, perhaps the highest mountain in Palestine. David pictured the other mountains showing jealousy because they weren\u2019t selected. God made a temporary visit to His people when He came down on Mount Sinai (Ex. 19; 24), but Zion was to be His permanent dwelling place (132:13\u201314; 1 Kings 8:12 [c_1Ki_8] [v_1Ki_8_12] \u201313). The \u201cchariots of God\u201d make up His heavenly army, for He is the Lord of Hosts (46:7, 11; 2 Kings 2:11 [c_2Ki_2] [v_2Ki_2_11] ; 6:17; Dan. 7:10 [c_Dan_7] [v_Dan_7_10] ; Matt. 26:53 [c_Mat_26] [v_Mat_26_53] ). To \u201cascend on high\u201d means to win the victory and return in triumph (47:1\u20136). Some think this refers to a time when the ark was \u201cin the field\u201d with the army and then brought back to the sanctuary on Zion (2 Sam. 11:11 [c_2Sa_11] [v_2Sa_11_11] ; 12:26\u201331). Paul quoted"
+  },
+  "3": {
+    "Warren W. Wiersbe": "Our God Is Dwelling with Us (vv. 19\u201327). David saw the Lord\u2019s presence on Zion as a blessing first of all to those who were burdened and in danger. Jehovah our King bears our burdens and defeats our enemies. Certainly David saw the Lord win great victories for Israel so that the borders of the kingdom were greatly enlarged. \u201cHairy scalp\u201d ("
+  },
+  "21": {
+    "Warren W. Wiersbe": ") signifies the virile enemy warriors who trusted in their youth and strength. The enemy may flee, but the Lord will chase them down and bring them back from the tops of the mountains and the depths of the sea, from the east (Bashan) and the west (the sea). (See Amos 9:1\u20133.) The picture in"
+  },
+  "23": {
+    "Warren W. Wiersbe": "isn\u2019t a pretty one, but \u201cdogs licking blood\u201d was a common phrase for the most complete kind of judgment and humiliation (58:10; 1 Kings 21:17 [c_1Ki_21] [v_1Ki_21_17] \u201324; 2 Kings 9:30 [c_2Ki_9] [v_2Ki_9_30] \u201337). The King now receives the homage of His people who gladly say, \u201cMy God, my King\u201d (vv. 24\u201327). Both men and women, laypeople and priests, join in praising the Lord. Zion was situated at the border of Judah and Benjamin; David came from Judah and King Saul from Benjamin. As the youngest of the sons of Jacob, and perhaps as the tribe of Israel\u2019s first king, Benjamin leads the procession along with the leaders of Judah (representing the southern tribes) and the leaders of Zebulun and Naphtali (the northern tribes). Israel is a united people, praising the Lord. \u201cFountain of Israel\u201d ("
+  },
+  "26": {
+    "Warren W. Wiersbe": ") refers to the Lord ( NASB , and see 36:9) or the patriarchs, especially Jacob ( AB )."
+  },
+  "35": {
+    "Warren W. Wiersbe": "is the one described in Ezekiel 40\u2014"
+  }
+});
